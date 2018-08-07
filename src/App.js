@@ -15,6 +15,9 @@ class App extends Component {
             <Experience></Experience>
           </div>
         </header>
+        <div className = "Page">
+          
+        </div>
       </div>
     );
   }
