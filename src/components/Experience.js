@@ -19,7 +19,7 @@ class Experience extends Component {
               <p className = "p-2 ">XP:</p>
             </div>
             <div className = "d-flex flex-fill progress">
-              <div className = "progress-bar bg-success" role = "progressbar" style={{width: this.state.progress + '%'}} aria-valuenow={this.state.progress} aria-valuemin="0" aria-valuemax="100">
+              <div className = "progress-bar bg-success" role = "progressbar" style={{width: this.props.experience + '%'}} aria-valuenow={this.state.progress} aria-valuemin="0" aria-valuemax="100">
 
               </div>
             </div>
