@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 
+//GUI components
 import Health from './components/Health';
 import Experience from './components/Experience';
+
+//Page components
+import Home from './components/Home';
+
+//routing components
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
 
 class App extends Component {
   render() {
@@ -16,7 +28,11 @@ class App extends Component {
           </div>
         </header>
         <div className = "Page">
-          
+          <Router>
+            <div>
+              <Route exact path="/" component={Home}/>
+            </div>
+          </Router>
         </div>
       </div>
     );
