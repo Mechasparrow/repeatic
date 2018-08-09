@@ -12,6 +12,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
+
     this.renderTasks = this.renderTasks.bind(this);
   }
 
@@ -19,7 +21,18 @@ class Home extends Component {
     var tasks = [];
 
     _.each(this.props.tasks, (task, idx) => {
-      tasks.push(<TaskCard key={idx} task={task} />);
+      tasks.push(
+        <TaskCard
+          completeTask={() => {
+            this.props.completeTask(idx);
+          }}
+          addXP={() => {
+            this.props.addXP(task);
+          }}
+          key={idx}
+          task={task}
+        />
+      );
     });
 
     return tasks;
