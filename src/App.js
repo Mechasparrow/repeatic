@@ -7,7 +7,7 @@ import Experience from "./containers/ExperienceContainer";
 
 //Page components
 import Home from "./containers/HomeContainer";
-
+import NewTask from "./containers/NewTaskContainer";
 //constants
 import { TEST } from "./constants";
 
@@ -42,6 +42,7 @@ class App extends Component {
               <Router>
                 <div>
                   <Route exact path="/" component={Home} />
+                  <Route path="/new-task" component={NewTask} />
                 </div>
               </Router>
             </div>

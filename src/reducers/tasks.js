@@ -1,11 +1,11 @@
 //models
 import Task from "../models/Task";
 
-import { COMPLETE_TASK } from "../constants";
+import { COMPLETE_TASK, CREATE_TASK } from "../constants";
 
 import _ from "lodash";
 
-const tasks = (
+export const tasks = (
   state = [
     new Task("brush teeth", "hygiene", 10),
     new Task("meditate", "spiritual", 5)
@@ -13,6 +13,10 @@ const tasks = (
   action
 ) => {
   switch (action.type) {
+    case CREATE_TASK:
+      var { new_task } = action.payload;
+      return _.concat(state, new_task);
+
     case COMPLETE_TASK:
       var task_idx = _.map(state, function(tsk, i) {
         return i;
@@ -36,5 +40,3 @@ const tasks = (
       return state;
   }
 };
-
-export default tasks;

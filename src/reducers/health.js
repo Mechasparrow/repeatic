@@ -1,6 +1,3 @@
-
-const health = (state = 100, action) => {
+export const health = (state = 100, action) => {
   return state;
-}
-
-export default health;
+};
