@@ -20,8 +20,12 @@ class TaskCard extends Component {
   taskOverdue() {
     var task = this.props.task;
 
-    if (task.pastDeadline()) {
-      this.props.failTask();
+    if (this.props.taskFailed !== true) {
+      if (task.pastDeadline()) {
+        this.props.failTask();
+      }
+    } else {
+      return;
     }
   }
 
@@ -41,9 +45,11 @@ class TaskCard extends Component {
             <div>
               <span className="time-left">{this.props.task.timeLeft()}</span>
             </div>
-            <button onClick={this.completeTask} className="btn btn-success">
-              Complete task
-            </button>
+            {this.props.taskFailed === false && (
+              <button onClick={this.completeTask} className="btn btn-success">
+                Complete task
+              </button>
+            )}
           </div>
         </div>
       </div>
