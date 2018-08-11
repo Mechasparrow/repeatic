@@ -7,11 +7,22 @@ class TaskCard extends Component {
     super(props);
 
     this.completeTask = this.completeTask.bind(this);
+    this.taskOverdue = this.taskOverdue.bind(this);
+
+    this.taskOverdue();
   }
 
   completeTask() {
     this.props.completeTask();
     this.props.addXP();
+  }
+
+  taskOverdue() {
+    var task = this.props.task;
+
+    if (task.pastDeadline()) {
+      this.props.failTask();
+    }
   }
 
   render() {
@@ -24,8 +35,12 @@ class TaskCard extends Component {
               {this.props.task.type}
             </span>
             <br />
-            <span className="xp">+{this.props.task.xp} xp</span>
-            <br />
+            <div>
+              <span className="xp">+{this.props.task.xp} xp</span>
+            </div>
+            <div>
+              <span className="time-left">{this.props.task.timeLeft()}</span>
+            </div>
             <button onClick={this.completeTask} className="btn btn-success">
               Complete task
             </button>

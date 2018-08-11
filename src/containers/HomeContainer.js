@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Home from "../components/Home";
 
 //Related actions
-import { completeTask, addXP } from "../actions";
+import { completeTask, failTask, addXP } from "../actions";
 
 const MapStateToProps = state => ({
   tasks: state.tasks
@@ -13,6 +13,9 @@ const MapStateToProps = state => ({
 const MapDispatchToProps = dispatch => ({
   completeTask: task_idx => {
     dispatch(completeTask(task_idx));
+  },
+  failTask: task_idx => {
+    dispatch(failTask(task_idx));
   },
   addXP: task => {
     dispatch(addXP(task));

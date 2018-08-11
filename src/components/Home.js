@@ -44,6 +44,9 @@ class Home extends Component {
           addXP={() => {
             this.props.addXP(task);
           }}
+          failTask={() => {
+            this.props.failTask(idx);
+          }}
           key={idx}
           task={task}
         />
