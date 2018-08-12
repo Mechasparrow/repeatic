@@ -29,24 +29,26 @@ class NewTask extends Component {
     this.renderDeadlineOptions = this.renderDeadlineOptions.bind(this);
 
     let starting_duration = DURATIONS.DAY;
+    let starting_time_length = 1;
 
     this.state = {
       task_created: false,
-      tempTask: new Task("", this.props.categories[0], 0, this.parseDeadline(starting_duration)),
-      deadline: starting_duration
+      tempTask: new Task("", this.props.categories[0], 0, this.parseDeadline(starting_duration, starting_time_length)),
+      deadline: starting_duration,
+      time_length: starting_time_length
     };
 
   }
 
-  parseDeadline(deadline_constant) {
+  parseDeadline(deadline_constant, time_length) {
 
     var right_now = moment();
 
     switch(deadline_constant) {
       case DURATIONS.DAY:
-        return right_now.add(1, 'day');
+        return right_now.add(time_length, 'day');
       case DURATIONS.HOUR:
-        return right_now.add(1, 'hour');
+        return right_now.add(time_length, 'hour');
       default:
         return right_now;
     }
@@ -58,16 +60,15 @@ class NewTask extends Component {
 
     var theTask = this.state.tempTask;
     var deadline = this.state.deadline;
+    var time_length = this.state.time_length;
 
-    if (name === "deadline") {
+    if (name === "time_length") {
+      if (value >= 1) {
+          time_length = value;
+      }
+    } else if (name === "deadline") {
       deadline = value;
-
-      var deadline_moment = this.parseDeadline(value);
-      console.log(deadline_moment);
-      theTask['completeBy'] = deadline_moment;
-    }
-
-    if (name === "xp") {
+    }else if (name === "xp") {
       if (parseInt(value, 10) >= 0) {
         theTask[name] = value;
       }
@@ -75,10 +76,16 @@ class NewTask extends Component {
       theTask[name] = value;
     }
 
+
+    var deadline_moment = this.parseDeadline(deadline, time_length);
+    console.log(deadline_moment);
+    theTask['completeBy'] = deadline_moment;
+
     this.setState({
       ...this.state,
       tempTask: theTask,
-      deadline: deadline
+      deadline: deadline,
+      time_length: time_length
     });
   }
 
@@ -99,11 +106,18 @@ class NewTask extends Component {
   renderDeadlineOptions() {
     var deadline_option_values = _.keys(DURATIONS);
 
+    var multiple = (this.state.time_length > 1);
+
     console.log(deadline_option_values);
 
     const prettier_option = (constant) => {
       var split_constant = _.clone(constant).toLowerCase().split("");
       split_constant[0] = split_constant[0].toUpperCase();
+
+      if (multiple) {
+        split_constant.push('s');
+      }
+
       var constant = split_constant.join("");
 
       return constant;
@@ -176,9 +190,13 @@ class NewTask extends Component {
 
           <div className = "form-group">
             <label>Complete By: </label>
-            <select name = "deadline" value = {this.state.deadline} onChange = {this.handleInputChange} className = "form-control">
-              {this.renderDeadlineOptions()}
-            </select>
+            <br/>
+            <div className = "d-flex">
+              <input className = "form-control flex-shrink-1 time-length-input" value = {this.state.time_length} type = "number" name = "time_length" onChange ={this.handleInputChange}/>
+              <select name = "deadline" value = {this.state.deadline} onChange = {this.handleInputChange} className = "form-control flex-grow-1 duration-input">
+                {this.renderDeadlineOptions()}
+              </select>
+            </div>
           </div>
 
           <button onClick={this.createTask} className="btn btn-success">
