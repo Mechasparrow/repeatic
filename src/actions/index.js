@@ -1,3 +1,6 @@
+//lodash
+import _ from "lodash";
+
 import {
   COMPLETE_TASK,
   FAILED_TASK,
@@ -34,11 +37,18 @@ export const addXP = added_xp => {
     var { experience } = getState();
     console.log(experience + added_xp);
 
-    if (experience + added_xp > 100) {
-      dispatch(incrementLevel());
-      dispatch(updateXP(added_xp));
+    var xp_sum = experience + added_xp;
+
+    if (xp_sum > 100) {
+      var levels = Math.floor(xp_sum / 100);
+      var left_over_xp = xp_sum % 100;
+
+      for (var i = 0; i < levels; i++) {
+        dispatch(incrementLevel());
+      }
+      dispatch(updateXP(left_over_xp));
     } else {
-      dispatch(updateXP(experience + added_xp));
+      dispatch(updateXP(xp_sum));
     }
   };
 };
