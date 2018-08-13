@@ -9,9 +9,7 @@ import Experience from "./containers/ExperienceContainer";
 import Home from "./containers/HomeContainer";
 import NewTask from "./containers/NewTaskContainer";
 import FailedTasks from "./containers/FailedTasksContainer";
-
-/** TODO redux container **/
-import CompletedTasks from "./components/CompletedTasks";
+import CompletedTasks from "./containers/CompletedTasksContainer";
 
 //constants
 import { TEST } from "./constants";

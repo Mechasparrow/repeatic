@@ -15,6 +15,9 @@ class CompletedTasks extends Component {
   constructor(props) {
     super(props);
 
+    // KILLME
+    console.log(props);
+
     this.state = {
       go_home: false
     };
