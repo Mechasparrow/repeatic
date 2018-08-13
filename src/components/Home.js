@@ -61,8 +61,8 @@ class Home extends Component {
           completeTask={() => {
             this.props.completeTask(idx);
           }}
-          addXP={() => {
-            this.props.addXP(task);
+          addTaskXP={() => {
+            this.props.addTaskXP(task);
           }}
           failTask={() => {
             this.props.failTask(idx);

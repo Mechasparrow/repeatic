@@ -26,7 +26,7 @@ class TaskCard extends Component {
 
   completeTask() {
     this.props.completeTask();
-    this.props.addXP();
+    this.props.addTaskXP();
   }
 
   taskOverdue() {

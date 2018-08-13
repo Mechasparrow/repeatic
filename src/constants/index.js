@@ -3,10 +3,18 @@ import * as durations from "./durations";
 export const TEST = "TEST";
 
 //Actions for redux
-export const COMPLETE_TASK = "COMPLETE_TASK";
+
+//xp related
 export const ADD_XP = "ADD_XP";
+export const UPDATE_XP = "UPDATE_XP";
+export const INCREMENT_LEVEL = "INCREMENT_LEVEL";
+
+//task related
+export const COMPLETE_TASK = "COMPLETE_TASK";
 export const CREATE_TASK = "CREATE_TASK";
 export const FAILED_TASK = "FAILED_TASK";
+
+//health related
 export const INVOKE_PENALTY = "INVOKE_PENALTY";
 
 //moment durations
