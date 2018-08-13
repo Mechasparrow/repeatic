@@ -6,12 +6,22 @@ import {
   INVOKE_PENALTY
 } from "../constants";
 
-export const completeTask = task_idx => ({
+export const completedTask = (task, task_idx) => ({
   type: COMPLETE_TASK,
   payload: {
+    task,
     task_idx
   }
 });
+
+export const completeTask = task_idx => {
+  return (dispatch, getState) => {
+    const { tasks } = getState();
+    const completed_task = tasks[task_idx];
+
+    dispatch(completedTask(completed_task, task_idx));
+  };
+};
 
 export const invokePenalty = penalty => ({
   type: INVOKE_PENALTY,
