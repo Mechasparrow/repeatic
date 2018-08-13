@@ -17,20 +17,31 @@ class Home extends Component {
 
     this.state = {
       new_task: false,
-      view_failed_tasks: false
+      view_failed_tasks: false,
+      view_completed_tasks: false
     };
 
     console.log(props);
 
     this.renderTasks = this.renderTasks.bind(this);
     this.newTask = this.newTask.bind(this);
+
+    //Redirects
     this.viewFailedTasks = this.viewFailedTasks.bind(this);
+    this.viewCompletedTasks = this.viewCompletedTasks.bind(this);
   }
 
   viewFailedTasks() {
     this.setState({
       ...this.state,
       view_failed_tasks: true
+    });
+  }
+
+  viewCompletedTasks() {
+    this.setState({
+      ...this.state,
+      view_completed_tasks: true
     });
   }
 
@@ -75,6 +86,10 @@ class Home extends Component {
       return <Redirect push to="/failed-tasks" />;
     }
 
+    if (this.state.view_completed_tasks === true) {
+      return <Redirect push to="/completed-tasks" />;
+    }
+
     return (
       <div className="home container">
         <h2>Here are some tasks</h2>
@@ -90,6 +105,12 @@ class Home extends Component {
             className="btn btn-danger btn-failed-task"
           >
             View Failed Tasks
+          </button>
+          <button
+            onClick={this.viewCompletedTasks}
+            className="btn btn-success btn-completed-task"
+          >
+            View Completed Tasks
           </button>
         </div>
         <div className="task-list">{this.renderTasks()}</div>

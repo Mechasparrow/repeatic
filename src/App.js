@@ -10,6 +10,9 @@ import Home from "./containers/HomeContainer";
 import NewTask from "./containers/NewTaskContainer";
 import FailedTasks from "./containers/FailedTasksContainer";
 
+/** TODO redux container **/
+import CompletedTasks from "./components/CompletedTasks";
+
 //constants
 import { TEST } from "./constants";
 
@@ -46,6 +49,7 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <Route path="/new-task" component={NewTask} />
                   <Route path="/failed-tasks" component={FailedTasks} />
+                  <Route path="/completed-tasks" component={CompletedTasks} />
                 </div>
               </Router>
             </div>
