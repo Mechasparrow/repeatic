@@ -3,6 +3,18 @@ import "./TaskCard.css";
 
 //Task Card Page component
 class TaskCard extends Component {
+  static get COMPLETED() {
+    return "COMPLETED";
+  }
+
+  static get FAILED() {
+    return "FAILED";
+  }
+
+  static get INPROGRESS() {
+    return "INPROGRESS";
+  }
+
   constructor(props) {
     super(props);
 
@@ -20,7 +32,7 @@ class TaskCard extends Component {
   taskOverdue() {
     var task = this.props.task;
 
-    if (this.props.taskFailed !== true) {
+    if (this.props.task_status === TaskCard.INPROGRESS) {
       if (task.pastDeadline()) {
         this.props.failTask();
       }
@@ -42,9 +54,11 @@ class TaskCard extends Component {
             <div>
               <span className="xp">+{this.props.task.xp} xp</span>
             </div>
-            <div>
-              <span className="time-left">{this.props.task.timeLeft()}</span>
-            </div>
+            {this.props.task_status === TaskCard.INPROGRESS && (
+              <div>
+                <span className="time-left">{this.props.task.timeLeft()}</span>
+              </div>
+            )}
             {this.props.taskFailed === false && (
               <button onClick={this.completeTask} className="btn btn-success">
                 Complete task

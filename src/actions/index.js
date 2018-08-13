@@ -30,23 +30,7 @@ export const invokePenalty = penalty => ({
   }
 });
 
-export const failedTask = (task, task_idx) => ({
-  type: FAILED_TASK,
-  payload: {
-    task,
-    task_idx
-  }
-});
-
-export const failTask = task_idx => {
-  return (dispatch, getState) => {
-    const { tasks } = getState();
-    const failed_task = tasks[task_idx];
-
-    dispatch(failedTask(failed_task, task_idx));
-    dispatch(invokePenalty(failed_task.penalty));
-  };
-};
+//experience related actions
 
 export const addXP = task => ({
   type: ADD_XP,
@@ -54,6 +38,8 @@ export const addXP = task => ({
     task
   }
 });
+
+//task related actions
 
 export const createTask = new_task => ({
   type: CREATE_TASK,

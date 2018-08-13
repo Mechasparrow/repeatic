@@ -15,35 +15,25 @@ class CompletedTasks extends Component {
   constructor(props) {
     super(props);
 
-    // KILLME
-    console.log(props);
-
     this.state = {
       go_home: false
     };
 
-    //this.displayCompletedTasks = this.displayCompletedTasks.bind(this);
+    this.displayCompletedTasks = this.displayCompletedTasks.bind(this);
   }
-
-  /** TODO implement redux container
 
   displayCompletedTasks() {
     var completed_task_cards = _.map(
       this.props.completed_tasks,
-      (completed_task, idx) => {
+      (task, idx) => {
         return (
-          <TaskCard
-            key={idx}
-            task={(completed_task, _task)}
-            taskFailed={true}
-          />
+          <TaskCard key={idx} task={task} task_status={TaskCard.COMPLETED} />
         );
       }
     );
 
     return completed_task_cards;
   }
-  **/
 
   render() {
     if (this.state.go_home === true) {
@@ -56,7 +46,9 @@ class CompletedTasks extends Component {
           Tasks you <span className="completed-text">completed</span>
         </h2>
 
-        <div className="completed-tasks-list">display completed tasks</div>
+        <div className="completed-tasks-list">
+          {this.displayCompletedTasks()}
+        </div>
       </div>
     );
   }

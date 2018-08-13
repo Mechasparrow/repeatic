@@ -69,6 +69,7 @@ class Home extends Component {
           }}
           key={idx}
           task={task}
+          task_status={TaskCard.INPROGRESS}
           taskFailed={false}
         />
       );

@@ -23,12 +23,9 @@ class FailedTasks extends Component {
   }
 
   displayFailedTasks() {
-    var failed_task_cards = _.map(
-      this.props.failed_tasks,
-      (failed_task, idx) => {
-        return <TaskCard key={idx} task={failed_task} taskFailed={true} />;
-      }
-    );
+    var failed_task_cards = _.map(this.props.failed_tasks, (task, idx) => {
+      return <TaskCard key={idx} task={task} task_status={TaskCard.FAILED} />;
+    });
 
     return failed_task_cards;
   }
