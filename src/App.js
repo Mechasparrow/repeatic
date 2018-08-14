@@ -18,8 +18,9 @@ import { TEST } from "./constants";
 //routing components
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-//redux libs
-import { store } from "./store";
+//redux libs + persistence
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 
 //react-redux
 import { Provider } from "react-redux";
@@ -34,26 +35,28 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store={store}>
-          <div>
-            <header className="App-header">
-              <h1 className="App-title">Repeatic</h1>
-              <div className="container">
-                <Health />
-                <Experience />
-                <LevelDisplay />
-              </div>
-            </header>
-            <div className="Page">
-              <Router>
-                <div>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/new-task" component={NewTask} />
-                  <Route path="/failed-tasks" component={FailedTasks} />
-                  <Route path="/completed-tasks" component={CompletedTasks} />
+          <PersistGate loading={null} persistor={persistor}>
+            <div>
+              <header className="App-header">
+                <h1 className="App-title">Repeatic</h1>
+                <div className="container">
+                  <Health />
+                  <Experience />
+                  <LevelDisplay />
                 </div>
-              </Router>
+              </header>
+              <div className="Page">
+                <Router>
+                  <div>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/new-task" component={NewTask} />
+                    <Route path="/failed-tasks" component={FailedTasks} />
+                    <Route path="/completed-tasks" component={CompletedTasks} />
+                  </div>
+                </Router>
+              </div>
             </div>
-          </div>
+          </PersistGate>
         </Provider>
       </div>
     );
