@@ -4,6 +4,7 @@ import "./App.css";
 //GUI components
 import Health from "./containers/HealthContainer";
 import Experience from "./containers/ExperienceContainer";
+import LevelDisplay from "./containers/LevelDisplayContainer";
 
 //Page components
 import Home from "./containers/HomeContainer";
@@ -39,6 +40,7 @@ class App extends Component {
               <div className="container">
                 <Health />
                 <Experience />
+                <LevelDisplay />
               </div>
             </header>
             <div className="Page">
