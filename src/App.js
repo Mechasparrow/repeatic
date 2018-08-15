@@ -15,6 +15,9 @@ import CompletedTasks from "./containers/CompletedTasksContainer";
 //constants
 import { TEST } from "./constants";
 
+//actions
+import {checkRecurringTasks} from './actions';
+
 //routing components
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -24,6 +27,9 @@ import { PersistGate } from "redux-persist/integration/react";
 
 //react-redux
 import { Provider } from "react-redux";
+
+//timing
+import moment from 'moment';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +41,7 @@ class App extends Component {
   finalCheck() {
     console.log("hello");
     store.dispatch({ type: TEST });
+    store.dispatch(checkRecurringTasks(moment()));
   }
 
   render() {

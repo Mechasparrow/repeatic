@@ -61,6 +61,30 @@ export const updateXP = new_xp => ({
 });
 
 //task related actions
+
+
+//TODO finish me
+export const checkRecurringTasks = (current_time) => {
+  return (dispatch, getState) => {
+    var {recurring_tasks} = getState();
+
+    var recurring_tasks_to_spawn = _.filter(recurring_tasks, function (recurring_task) {
+      console.log(recurring_task.checkRecurrence(current_time));
+      return true;
+    })
+
+  }
+}
+
+// TODO update recurring task
+export const updateRecurringTaskLastInstance = (recurring_task_idx, last_instance) => (
+  {
+    type: "",
+    payload: {}
+  }
+)
+
+
 export const createTask = new_task => ({
   type: CREATE_TASK,
   payload: {

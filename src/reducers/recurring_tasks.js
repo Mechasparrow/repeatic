@@ -16,11 +16,11 @@ export const recurring_tasks = (
       "Eat Strawberries",
       "food",
       10,
-      moment().add(1, "day"),
+      moment().subtract(1, "day"),
       5,
       false,
       DAILY,
-      moment()
+      moment().subtract(1, "day")
     )
   ],
   action

@@ -1,5 +1,11 @@
 import moment from "moment";
 
+//recurrence constants
+import {
+  DAILY,
+  WEEKLY
+} from '../constants';
+
 //parent model
 import Task from "./Task";
 
@@ -21,7 +27,32 @@ class RecurringTask extends Task {
   }
 
   //TODO implement me
-  checkRecurrence(current_time) {}
+  checkRecurrence(current_time) {
+
+    //Get the recurrence
+    var {recurrence} = this;
+
+    //Get the diff between now and the last recurrence
+    var diff = current_time.diff(this.lastInstance, 'days');
+
+    switch (recurrence) {
+      case DAILY:
+        if (diff >= 1) {
+          return true;
+        }else {
+          return false;
+        }
+      case WEEKLY:
+        if (diff >= 7) {
+          return true;
+        }else {
+          return false;
+        }
+      default:
+        return false;
+    }
+
+  }
 
   serialize() {
     let { completed, recurrence, lastInstance } = this;
