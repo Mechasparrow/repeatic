@@ -4,6 +4,10 @@ export const TEST = "TEST";
 
 //Actions for redux
 
+//recurrence rates
+export const DAILY = "DAILY";
+export const WEEKLY = "WEEKLY";
+
 //xp related
 export const ADD_XP = "ADD_XP";
 export const UPDATE_XP = "UPDATE_XP";

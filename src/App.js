@@ -28,6 +28,12 @@ import { Provider } from "react-redux";
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.finalCheck = this.finalCheck.bind(this);
+  }
+
+  finalCheck() {
+    console.log("hello");
     store.dispatch({ type: TEST });
   }
 
@@ -35,7 +41,11 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
+          <PersistGate
+            loading={null}
+            onBeforeLift={this.finalCheck}
+            persistor={persistor}
+          >
             <div>
               <header className="App-header">
                 <h1 className="App-title">Repeatic</h1>

@@ -5,7 +5,7 @@ class Task {
     this.label = label;
     this.type = type;
     this.xp = xp;
-    this.completeBy = completeBy; //must be a moment instance
+    this.completeBy = moment(completeBy); //must be a moment instance
     this.penalty = penalty;
   }
 
