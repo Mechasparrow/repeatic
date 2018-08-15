@@ -5,6 +5,7 @@ import "./App.css";
 import Health from "./containers/HealthContainer";
 import Experience from "./containers/ExperienceContainer";
 import LevelDisplay from "./containers/LevelDisplayContainer";
+import Character from './components/Character';
 
 //Page components
 import Home from "./containers/HomeContainer";
@@ -56,7 +57,9 @@ class App extends Component {
             <div>
               <header className="App-header">
                 <h1 className="App-title">Repeatic</h1>
+
                 <div className="container">
+                  <Character/>
                   <Health />
                   <Experience />
                   <LevelDisplay />
