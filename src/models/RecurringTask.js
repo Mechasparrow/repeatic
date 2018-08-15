@@ -34,6 +34,7 @@ class RecurringTask extends Task {
 
     //Get the diff between now and the last recurrence
     var diff = current_time.diff(this.lastInstance, 'days');
+    
 
     switch (recurrence) {
       case DAILY:

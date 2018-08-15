@@ -8,7 +8,8 @@ import {
   CREATE_TASK,
   INCREMENT_LEVEL,
   UPDATE_XP,
-  INVOKE_PENALTY
+  INVOKE_PENALTY,
+  UPDATE_RECURRING_TASK_LAST_INSTANCE
 } from "../constants";
 //health related actions
 
@@ -68,10 +69,30 @@ export const checkRecurringTasks = (current_time) => {
   return (dispatch, getState) => {
     var {recurring_tasks} = getState();
 
-    var recurring_tasks_to_spawn = _.filter(recurring_tasks, function (recurring_task) {
-      console.log(recurring_task.checkRecurrence(current_time));
-      return true;
+    var recurring_task_ids = _.map(recurring_tasks, function (t, i) {
+      return i;
     })
+
+    var task_to_spawn_ids = [];
+
+    var recurring_tasks_to_spawn = _.filter(recurring_tasks, function (recurring_task, idx) {
+
+      if (recurring_task.checkRecurrence(current_time)) {
+        task_to_spawn_ids.push(idx);
+        return true;
+      }
+    })
+
+    var spawned_tasks = _.map(recurring_tasks_to_spawn, function (recurring_task) {
+      var new_task= recurring_task.spawn_task();
+
+      dispatch(createTask(new_task));
+    });
+
+    _.map(task_to_spawn_ids, function (recurring_task_id) {
+      dispatch(updateRecurringTaskLastInstance(recurring_task_id, current_time));
+    })
+
 
   }
 }
@@ -79,8 +100,11 @@ export const checkRecurringTasks = (current_time) => {
 // TODO update recurring task
 export const updateRecurringTaskLastInstance = (recurring_task_idx, last_instance) => (
   {
-    type: "",
-    payload: {}
+    type: UPDATE_RECURRING_TASK_LAST_INSTANCE,
+    payload: {
+      recurring_task_idx,
+      last_instance
+    }
   }
 )
 
