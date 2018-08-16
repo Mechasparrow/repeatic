@@ -1,0 +1,9 @@
+.character {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.character img {
+  width: 150px;
+  height: 150px;
+}

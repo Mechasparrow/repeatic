@@ -8,25 +8,24 @@ import _ from "lodash";
 class Character extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
-      <div className = "character">
-        <div className = "head">
-
+      <div className="character">
+        <div className="head">
+          <img src={this.props.character.head} />
         </div>
 
-        <div className = "body">
-
+        <div className="body">
+          <img src={this.props.character.body} />
         </div>
 
-        <div className = "lower">
-
+        <div className="lower">
+          <img src={this.props.character.legs} />
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -5,7 +5,7 @@ import "./App.css";
 import Health from "./containers/HealthContainer";
 import Experience from "./containers/ExperienceContainer";
 import LevelDisplay from "./containers/LevelDisplayContainer";
-import Character from './components/Character';
+import Character from "./containers/CharacterContainer";
 
 //Page components
 import Home from "./containers/HomeContainer";
@@ -17,7 +17,7 @@ import CompletedTasks from "./containers/CompletedTasksContainer";
 import { TEST } from "./constants";
 
 //actions
-import {checkRecurringTasks} from './actions';
+import { checkRecurringTasks } from "./actions";
 
 //routing components
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -30,7 +30,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 //timing
-import moment from 'moment';
+import moment from "moment";
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class App extends Component {
                 <h1 className="App-title">Repeatic</h1>
 
                 <div className="container">
-                  <Character/>
+                  <Character />
                   <Health />
                   <Experience />
                   <LevelDisplay />

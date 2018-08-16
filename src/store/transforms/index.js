@@ -6,6 +6,7 @@ import _ from "lodash";
 //models for parsing and serialization
 import Task from "../../models/Task";
 import RecurringTask from "../../models/RecurringTask";
+import Character from "../../models/Character";
 
 export const taskTransform = createTransform(
   (inboundState, key) => {
@@ -49,4 +50,16 @@ export const recurringTaskTransform = createTransform(
   },
 
   { whitelist: ["recurring_tasks"] }
+);
+
+export const characterTransform = createTransform(
+  (inboundState, key) => {
+    let character = inboundState;
+    let raw_character = character.serialize();
+  },
+  (outboundState, key) => {
+    let raw_character = outboundState;
+    return Character.parse(raw_character);
+  },
+  { whitelist: ["character"] }
 );

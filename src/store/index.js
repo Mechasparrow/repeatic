@@ -6,7 +6,11 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 //persistence transforms
-import { taskTransform, recurringTaskTransform } from "./transforms";
+import {
+  taskTransform,
+  recurringTaskTransform,
+  characterTransform
+} from "./transforms";
 
 //Root reducer
 import { rootReducer } from "../reducers";
@@ -19,7 +23,7 @@ import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
-  transforms: [taskTransform, recurringTaskTransform]
+  transforms: [taskTransform, recurringTaskTransform, characterTransform]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
