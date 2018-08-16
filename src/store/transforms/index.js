@@ -56,6 +56,7 @@ export const characterTransform = createTransform(
   (inboundState, key) => {
     let character = inboundState;
     let raw_character = character.serialize();
+    return raw_character;
   },
   (outboundState, key) => {
     let raw_character = outboundState;

@@ -8,7 +8,7 @@ import Character from "../models/Character";
 
 export const character = (
   state = new Character(
-    CHARACTER_PARTS.HEAD0,
+    CHARACTER_PARTS.HEAD3,
     CHARACTER_PARTS.BODY2,
     CHARACTER_PARTS.LEGS2
   ),
