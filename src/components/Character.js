@@ -12,17 +12,21 @@ class Character extends Component {
 
   render() {
     return (
-      <div className="character">
-        <div className="head">
-          <img src={this.props.character.head} />
-        </div>
+      <div className="character container">
+        <div className="row">
+          <div className="col-4 offset-4">
+            <div className="head">
+              <img className="img-fluid" src={this.props.character.head} />
+            </div>
 
-        <div className="body">
-          <img src={this.props.character.body} />
-        </div>
+            <div className="body img-fluid">
+              <img className="img-fluid" src={this.props.character.body} />
+            </div>
 
-        <div className="lower">
-          <img src={this.props.character.legs} />
+            <div className="lower img-fluid">
+              <img className="img-fluid" src={this.props.character.legs} />
+            </div>
+          </div>
         </div>
       </div>
     );
