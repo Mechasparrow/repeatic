@@ -16,40 +16,40 @@ class EditCharacter extends Component {
           <div className="row">
             <div className="col">
               <div className="head">
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
                   src={this.props.character.head}
                 />
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-right" />
                 </button>
               </div>
 
               <div className="body">
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
                   src={this.props.character.body}
                 />
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-right" />
                 </button>
               </div>
 
               <div className="legs">
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
                   src={this.props.character.legs}
                 />
-                <button className="btn col-2 btn-primary">
+                <button className="btn col-2 btn-dark">
                   <i class="fas fa-chevron-right" />
                 </button>
               </div>
