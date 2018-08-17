@@ -56,24 +56,30 @@ class App extends Component {
             persistor={persistor}
           >
             <div>
-              <header className="App-header">
-                <h1 className="App-title">Repeatic</h1>
-
-                <div className="container">
-                  <Character />
-                  <Health />
-                  <Experience />
-                  <LevelDisplay />
-                </div>
-              </header>
               <div className="Page">
                 <Router>
                   <div>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/new-task" component={NewTask} />
-                    <Route path="/failed-tasks" component={FailedTasks} />
-                    <Route path="/completed-tasks" component={CompletedTasks} />
-                    <Route path="/edit-character" component={EditCharacter} />
+                    <header className="App-header">
+                      <h1 className="App-title">Repeatic</h1>
+
+                      <div className="container">
+                        <Character />
+                        <Health />
+                        <Experience />
+                        <LevelDisplay />
+                      </div>
+                    </header>
+
+                    <div className="routes">
+                      <Route exact path="/" component={Home} />
+                      <Route path="/new-task" component={NewTask} />
+                      <Route path="/failed-tasks" component={FailedTasks} />
+                      <Route
+                        path="/completed-tasks"
+                        component={CompletedTasks}
+                      />
+                      <Route path="/edit-character" component={EditCharacter} />
+                    </div>
                   </div>
                 </Router>
               </div>
