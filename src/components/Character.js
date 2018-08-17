@@ -28,6 +28,9 @@ class Character extends Component {
             </div>
           </div>
         </div>
+        <button className = "btn btn-secondary btn-edit">
+          Edit Character
+        </button>
       </div>
     );
   }
