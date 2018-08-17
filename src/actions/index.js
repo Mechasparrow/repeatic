@@ -9,7 +9,8 @@ import {
   INCREMENT_LEVEL,
   UPDATE_XP,
   INVOKE_PENALTY,
-  UPDATE_RECURRING_TASK_LAST_INSTANCE
+  UPDATE_RECURRING_TASK_LAST_INSTANCE,
+  UPDATE_CHARACTER
 } from "../constants";
 //health related actions
 
@@ -63,51 +64,54 @@ export const updateXP = new_xp => ({
 
 //task related actions
 
-
 //TODO finish me
-export const checkRecurringTasks = (current_time) => {
+export const checkRecurringTasks = current_time => {
   return (dispatch, getState) => {
-    var {recurring_tasks} = getState();
+    var { recurring_tasks } = getState();
 
-    var recurring_task_ids = _.map(recurring_tasks, function (t, i) {
+    var recurring_task_ids = _.map(recurring_tasks, function(t, i) {
       return i;
-    })
+    });
 
     var task_to_spawn_ids = [];
 
-    var recurring_tasks_to_spawn = _.filter(recurring_tasks, function (recurring_task, idx) {
-
+    var recurring_tasks_to_spawn = _.filter(recurring_tasks, function(
+      recurring_task,
+      idx
+    ) {
       if (recurring_task.checkRecurrence(current_time)) {
         task_to_spawn_ids.push(idx);
         return true;
       }
-    })
+    });
 
-    var spawned_tasks = _.map(recurring_tasks_to_spawn, function (recurring_task) {
-      var new_task= recurring_task.spawn_task();
+    var spawned_tasks = _.map(recurring_tasks_to_spawn, function(
+      recurring_task
+    ) {
+      var new_task = recurring_task.spawn_task();
 
       dispatch(createTask(new_task));
     });
 
-    _.map(task_to_spawn_ids, function (recurring_task_id) {
-      dispatch(updateRecurringTaskLastInstance(recurring_task_id, current_time));
-    })
-
-
-  }
-}
+    _.map(task_to_spawn_ids, function(recurring_task_id) {
+      dispatch(
+        updateRecurringTaskLastInstance(recurring_task_id, current_time)
+      );
+    });
+  };
+};
 
 // TODO update recurring task
-export const updateRecurringTaskLastInstance = (recurring_task_idx, last_instance) => (
-  {
-    type: UPDATE_RECURRING_TASK_LAST_INSTANCE,
-    payload: {
-      recurring_task_idx,
-      last_instance
-    }
+export const updateRecurringTaskLastInstance = (
+  recurring_task_idx,
+  last_instance
+) => ({
+  type: UPDATE_RECURRING_TASK_LAST_INSTANCE,
+  payload: {
+    recurring_task_idx,
+    last_instance
   }
-)
-
+});
 
 export const createTask = new_task => ({
   type: CREATE_TASK,
@@ -150,3 +154,11 @@ export const completeTask = task_idx => {
     dispatch(completedTask(completed_task, task_idx));
   };
 };
+
+//character actions
+export const updateCharacter = new_character => ({
+  type: UPDATE_CHARACTER,
+  payload: {
+    new_character
+  }
+});

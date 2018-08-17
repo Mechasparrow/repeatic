@@ -5,6 +5,9 @@ export const TEST = "TEST";
 
 //Actions for redux
 
+//character related
+export const UPDATE_CHARACTER = "UPDATE_CHARACTER";
+
 //recurrence rates
 export const DAILY = "DAILY";
 export const WEEKLY = "WEEKLY";
@@ -26,4 +29,6 @@ export const INVOKE_PENALTY = "INVOKE_PENALTY";
 
 //moment durations
 export const DURATIONS = durations;
+
+//character parts
 export const CHARACTER_PARTS = characters;

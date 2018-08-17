@@ -12,6 +12,7 @@ import Home from "./containers/HomeContainer";
 import NewTask from "./containers/NewTaskContainer";
 import FailedTasks from "./containers/FailedTasksContainer";
 import CompletedTasks from "./containers/CompletedTasksContainer";
+import EditCharacter from "./containers/EditCharacterContainer";
 
 //constants
 import { TEST } from "./constants";
@@ -72,6 +73,7 @@ class App extends Component {
                     <Route path="/new-task" component={NewTask} />
                     <Route path="/failed-tasks" component={FailedTasks} />
                     <Route path="/completed-tasks" component={CompletedTasks} />
+                    <Route path="/edit-character" component={EditCharacter} />
                   </div>
                 </Router>
               </div>
