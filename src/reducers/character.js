@@ -1,10 +1,11 @@
 //lodash lib
 import _ from "lodash";
 
-import { CHARACTER_PARTS } from "../constants";
-
 //character model
 import Character from "../models/Character";
+
+//character constants
+import { UPDATE_CHARACTER, CHARACTER_PARTS } from "../constants";
 
 export const character = (
   state = new Character(
@@ -15,6 +16,9 @@ export const character = (
   action
 ) => {
   switch (action.type) {
+    case UPDATE_CHARACTER:
+      let { new_character } = action.payload;
+      return new_character;
     default:
       return state;
   }
