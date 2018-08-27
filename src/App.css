@@ -1,11 +1,26 @@
 .App-header {
   background-color: #222;
-
   padding: 10px;
   color: white;
+}
+
+.App-header .header-content {
+  padding-top: 8px;
+  padding-bottom: 24px;
 }
 
 .App-title {
   font-size: 2.5em;
   text-align: center;
+  text-decoration: none !important;
+  color: white;
+}
+
+.App-title:hover {
+  color: white;
+}
+
+.App .page-content {
+  margin-top: 16px;
+  margin-bottom: 32px;
 }

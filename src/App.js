@@ -60,17 +60,32 @@ class App extends Component {
                 <Router>
                   <div>
                     <header className="App-header">
-                      <h1 className="App-title">Repeatic</h1>
-
                       <div className="container">
-                        <Character />
-                        <Health />
-                        <Experience />
-                        <LevelDisplay />
+                        <div className="row">
+                          <div className="col-3">
+                            <Link className="App-title" to="/">
+                              <h1>Repeatic</h1>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="container header-content">
+                        <div className="row">
+                          <div className="col-3">
+                            <Character />
+                          </div>
+
+                          <div className="col-9">
+                            <Health />
+                            <Experience />
+                            <LevelDisplay />
+                          </div>
+                        </div>
                       </div>
                     </header>
 
-                    <div className="routes">
+                    <div className="page-content routes">
                       <Route exact path="/" component={Home} />
                       <Route path="/new-task" component={NewTask} />
                       <Route path="/failed-tasks" component={FailedTasks} />
