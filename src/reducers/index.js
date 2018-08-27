@@ -22,5 +22,6 @@ export const rootReducer = combineReducers({
   preset_tasks,
   categories,
   completed_tasks,
+  recurring_tasks,
   level
 });

@@ -41,6 +41,22 @@ export const recurring_tasks = (
           return RecurringTask.parse(recurring_task);
       })
 
+    case DELETE_RECURRING_TASK:
+
+      var {recurring_task_idx} = action.payload;
+
+      //TODO implement ability to delete recurring tasks
+
+      return state;
+
+    case CREATE_RECURRING_TASK:
+
+      var {new_recurring_task} = action.payload;
+
+      //TODO implement ability to create recurring tasks
+
+      return state;
+
     default:
       return state;
   }
