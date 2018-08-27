@@ -7,7 +7,8 @@ import AddPresetTask from "../components/AddPresetTask";
 import { createTask } from "../actions";
 
 const MapStateToProps = state => ({
-  categories: state.categories
+  categories: state.categories,
+  preset_tasks: state.preset_tasks
 });
 
 const MapDispatchToProps = dispatch => ({

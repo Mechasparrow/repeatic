@@ -24,18 +24,14 @@ class AddPresetTask extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.createTask = this.createTask.bind(this);
     this.renderDeadlineOptions = this.renderDeadlineOptions.bind(this);
+    this.renderPresetTasks = this.renderPresetTasks.bind(this);
 
     let starting_duration = DURATIONS.DAY;
     let starting_time_length = 1;
 
     this.state = {
       task_created: false,
-      tempTask: new Task(
-        "",
-        this.props.categories[0],
-        0,
-        this.parseDeadline(starting_duration, starting_time_length)
-      ),
+      presetTask: this.props.preset_tasks[0],
       deadline: starting_duration,
       time_length: starting_time_length
     };
@@ -55,41 +51,49 @@ class AddPresetTask extends Component {
   }
 
   handleInputChange(e) {
-    let { name, value } = e.target;
+    let { value, name } = e.target;
 
-    var theTask = this.state.tempTask;
-    var deadline = this.state.deadline;
-    var time_length = this.state.time_length;
+    var { deadline, time_length, presetTask } = this.state;
 
-    if (name === "time_length") {
-      if (value >= 1) {
-        time_length = value;
-      }
-    } else if (name === "deadline") {
-      deadline = value;
-    } else if (name === "xp") {
-      var formatted_xp = parseInt(value, 10);
-      if (formatted_xp >= 0) {
-        theTask[name] = formatted_xp;
-      }
-    } else {
-      theTask[name] = value;
+    switch (name) {
+      case "time_length":
+        if (value >= 1) {
+          time_length = value;
+        }
+        break;
+      case "deadline":
+        deadline = value;
+        break;
+      case "presetTask":
+        presetTask = JSON.parse(value);
+        break;
     }
 
     var deadline_moment = this.parseDeadline(deadline, time_length);
-    console.log(deadline_moment);
-    theTask["completeBy"] = deadline_moment;
 
     this.setState({
       ...this.state,
-      tempTask: theTask,
-      deadline: deadline,
-      time_length: time_length
+      deadline,
+      time_length,
+      presetTask
     });
   }
 
-  // TODO implement me plz
-  renderPresetTasks() {}
+  renderPresetTasks() {
+    var preset_tasks = this.props.preset_tasks;
+
+    var task_options = _.map(preset_tasks, function(task, idx) {
+      var task_name = task["label"];
+
+      return (
+        <option key={idx} value={JSON.stringify(task)}>
+          {task_name}
+        </option>
+      );
+    });
+
+    return task_options;
+  }
 
   renderDeadlineOptions() {
     var deadline_option_values = _.keys(DURATIONS);
@@ -129,7 +133,15 @@ class AddPresetTask extends Component {
   }
 
   createTask() {
-    this.props.createTask(this.state.tempTask);
+    var task_json = {
+      ...this.state.presetTask,
+      completeBy: this.parseDeadline(
+        this.state.deadline,
+        this.state.time_length
+      )
+    };
+
+    this.props.createTask(Task.parse(task_json));
 
     this.setState({
       ...this.state,
@@ -147,7 +159,17 @@ class AddPresetTask extends Component {
         <h2>Select Preset Task</h2>
 
         <div className="preset-task-form">
-          <div className="form-group" />
+          <div className="form-group">
+            <label>Select Preset:</label>
+            <select
+              onChange={this.handleInputChange}
+              name="presetTask"
+              value={JSON.stringify(this.state.presetTask)}
+              className="form-control"
+            >
+              {this.renderPresetTasks()}
+            </select>
+          </div>
 
           <div className="form-group">
             <label>Complete By: </label>
