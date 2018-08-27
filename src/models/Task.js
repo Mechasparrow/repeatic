@@ -20,6 +20,15 @@ class Task {
     };
   }
 
+  static task_template(label, type, xp, penalty) {
+    return {
+      label,
+      type,
+      xp,
+      penalty
+    };
+  }
+
   static parse(raw_task) {
     let { label, type, xp, completeBy, penalty } = raw_task;
     return new Task(label, type, xp, completeBy, penalty);

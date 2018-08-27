@@ -17,6 +17,7 @@ class Home extends Component {
 
     this.state = {
       new_task: false,
+      add_preset_task: false,
       view_failed_tasks: false,
       view_completed_tasks: false
     };
@@ -25,10 +26,18 @@ class Home extends Component {
 
     this.renderTasks = this.renderTasks.bind(this);
     this.newTask = this.newTask.bind(this);
+    this.addPresetTask = this.addPresetTask.bind(this);
 
     //Redirects
     this.viewFailedTasks = this.viewFailedTasks.bind(this);
     this.viewCompletedTasks = this.viewCompletedTasks.bind(this);
+  }
+
+  addPresetTask() {
+    this.setState({
+      ...this.state,
+      add_preset_task: true
+    });
   }
 
   viewFailedTasks() {
@@ -91,6 +100,10 @@ class Home extends Component {
       return <Redirect push to="/completed-tasks" />;
     }
 
+    if (this.state.add_preset_task === true) {
+      return <Redirect push to="/add-preset-task" />;
+    }
+
     return (
       <div className="home container">
         <h2>Here are some tasks</h2>
@@ -100,6 +113,12 @@ class Home extends Component {
             className="btn btn-secondary btn-new-task"
           >
             New Task
+          </button>
+          <button
+            onClick={this.addPresetTask}
+            className="btn btn-primary btn-add-preset-task"
+          >
+            Add Preset Task
           </button>
           <button
             onClick={this.viewFailedTasks}

@@ -13,6 +13,7 @@ import NewTask from "./containers/NewTaskContainer";
 import FailedTasks from "./containers/FailedTasksContainer";
 import CompletedTasks from "./containers/CompletedTasksContainer";
 import EditCharacter from "./containers/EditCharacterContainer";
+import AddPresetTask from "./containers/AddPresetTaskContainer";
 
 //constants
 import { TEST } from "./constants";
@@ -94,6 +95,10 @@ class App extends Component {
                         component={CompletedTasks}
                       />
                       <Route path="/edit-character" component={EditCharacter} />
+                      <Route
+                        path="/add-preset-task"
+                        component={AddPresetTask}
+                      />
                     </div>
                   </div>
                 </Router>
