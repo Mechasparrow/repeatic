@@ -63,7 +63,7 @@ class App extends Component {
                     <header className="App-header">
                       <div className="container">
                         <div className="row">
-                          <div className="col-3">
+                          <div className="col-md-3">
                             <Link className="App-title" to="/">
                               <h1>Repeatic</h1>
                             </Link>
@@ -73,11 +73,11 @@ class App extends Component {
 
                       <div className="container header-content">
                         <div className="row">
-                          <div className="col-3">
+                          <div className="col-md-3">
                             <Character />
                           </div>
 
-                          <div className="col-9">
+                          <div className="col-md-9">
                             <Health />
                             <Experience />
                             <LevelDisplay />
