@@ -1,5 +1,9 @@
 .edit-character {
   padding-top: 32px;
+}
+
+.edit-character .header,
+.edit-character .character-view {
   text-align: center;
 }
 

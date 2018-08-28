@@ -33,7 +33,21 @@ class EditCharacter extends Component {
     });
   }
 
-  partRandomize() {}
+  partRandomize() {
+    var new_character = Character.parse({ ...this.props.character });
+
+    var { head, body, legs } = this.props.character;
+
+    head = _.sample(CHARACTER_PARTS.HEAD);
+    body = _.sample(CHARACTER_PARTS.BODY);
+    legs = _.sample(CHARACTER_PARTS.LEGS);
+
+    new_character["head"] = head;
+    new_character["body"] = body;
+    new_character["legs"] = legs;
+
+    this.props.updateCharacter(new_character);
+  }
 
   partCycle(part, dir) {
     var new_character = Character.parse({ ...this.props.character });
@@ -102,10 +116,20 @@ class EditCharacter extends Component {
     }
 
     return (
-      <div className="edit-character">
-        <h2>Editting Character</h2>
+      <div className="edit-character container">
+        <h2 className="header">Editting Character</h2>
 
         <div className="character-view">
+          <div className="shuffle-character row">
+            <div className="col-sm-3 offset-sm-9">
+              <button
+                onClick={this.partRandomize}
+                className="btn btn-secondary"
+              >
+                <i className="fas fa-random" />
+              </button>
+            </div>
+          </div>
           <div className="row">
             <div className="col">
               <div className="head">
@@ -115,7 +139,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-left" />
+                  <i className="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
@@ -127,7 +151,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-right" />
+                  <i className="fas fa-chevron-right" />
                 </button>
               </div>
 
@@ -138,7 +162,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-left" />
+                  <i className="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
@@ -150,7 +174,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-right" />
+                  <i className="fas fa-chevron-right" />
                 </button>
               </div>
 
@@ -161,7 +185,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-left" />
+                  <i className="fas fa-chevron-left" />
                 </button>
                 <img
                   className="img-fluid col-4"
@@ -173,7 +197,7 @@ class EditCharacter extends Component {
                   }}
                   className="btn col-2 btn-dark"
                 >
-                  <i class="fas fa-chevron-right" />
+                  <i className="fas fa-chevron-right" />
                 </button>
               </div>
             </div>
