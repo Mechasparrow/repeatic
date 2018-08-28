@@ -10,13 +10,30 @@ import { CHARACTER_PARTS } from "../constants";
 //import model
 import Character from "../models/Character";
 
+//Routing libs
+import { Link, Redirect } from "react-router-dom";
+
 class EditCharacter extends Component {
   constructor(props) {
     super(props);
     console.log(props);
 
+    this.state = {
+      doneEditting: false
+    };
+
     this.partCycle = this.partCycle.bind(this);
+    this.partRandomize = this.partRandomize.bind(this);
+    this.finishEditting = this.finishEditting.bind(this);
   }
+
+  finishEditting() {
+    this.setState({
+      doneEditting: true
+    });
+  }
+
+  partRandomize() {}
 
   partCycle(part, dir) {
     var new_character = Character.parse({ ...this.props.character });
@@ -78,6 +95,12 @@ class EditCharacter extends Component {
   }
 
   render() {
+    //Check if finished editting, if so redirect
+
+    if (this.state.doneEditting) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className="edit-character">
         <h2>Editting Character</h2>
@@ -156,6 +179,10 @@ class EditCharacter extends Component {
             </div>
           </div>
         </div>
+        <br />
+        <button onClick={this.finishEditting} className="btn btn-success">
+          Finish Editting
+        </button>
       </div>
     );
   }
